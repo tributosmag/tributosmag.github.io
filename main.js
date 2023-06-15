@@ -16,14 +16,14 @@ $(document).ready(function() {
     menu.classList.add("active");
     pauseSlides();
     addSlideOverlapClass();
-    slideshowButtons.classList.add('hide-buttons');
+    slideshowButtons.classList.add('hide-buttons'); // Adicione essa linha para ocultar os botões quando o menu está ativo
   });
 
   closeBtn.addEventListener("click", function() {
     menu.classList.remove("active");
     resumeSlides();
     removeSlideOverlapClass();
-    slideshowButtons.classList.remove('hide-buttons');
+    slideshowButtons.classList.remove('hide-buttons'); // Adicione essa linha para mostrar os botões quando o menu é fechado
   });
 
   window.addEventListener("scroll", function() {
