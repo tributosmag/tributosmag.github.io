@@ -276,13 +276,16 @@ td{
     text-align: center;
 }
 
-footer{
-    position: relative;
+footer {
+    bottom: 0;
+    left: 0;
     width: 100%;
-    text-align: center;
-    background-color: rgb(0, 0, 0);
-    color: #fff;
     padding: 10px;
+    color: white;
+    text-align: center;
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
 }
 
 
