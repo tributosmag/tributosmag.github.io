@@ -7,32 +7,42 @@
         <title>Federal</title>
         <link rel="shortcut icon" href="imagens/favicon.webp" type="image/x-icon">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="medias-query.css">
 </head>        
-    <body>
-        <header>
-          <a href="../index.html">
-            <div class="logo">
-              <img src="imagens/Logo-mag.svg" alt="">
-            </div>
-          </a>  
-          <h1>Legislações Federais</h1>
+    <body> 
+      <div class="gif">
+        <h1>Legislações Federais</h1>
+          <a class="logo" href="../index.html"><img src="imagens/Logo-mag.svg" alt=""></a>
+    </div>
+      <header>
+        <div class="menu-btn"></div>
+        <div class="navigation">
+          <ul class="menu">
+            <div class="close-btn"></div>
+            <li class="menu-item">
+              <li class="menu-item">
+                  <a class="sub-btn" href="#" data-tabela="tabela-irpj">IRPJ<i class="fas fa-angle-down"></i></a>
+              </li>              
+            <li class="menu-item">
+              <a class="sub-btn" href="#" data-tabela="tabela-csll">CSLL</a>
+            </li>
+            <li class="menu-item">
+              <a class="sub-btn" href="#" data-tabela="tabela-pis">PIS<i class="fas fa-angle-down"></i></a>   
+            </li>
+            <li class="menu-item">
+            <a class="sub-btn" href="#" data-tabela="tabela-cofins">COFINS<i class="fas fa-angle-down"></i></a>         
+            </li>
+            <li class="menu-item"><a href="#" data-tabela="tabela-inss">INSS</a></li>
+          </ul>
+        </div>
+      </header>
+        <main> 
           <div class="search-box">
             <input type="text" id="search-input" class="search-txt" placeholder="Pesquisar">
-            <a href="#" class="search-btn" onclick="search()">
+            <a href="#" class="search-btn">
               <img src="imagens/lupa.svg" alt="Lupa" width="20" height="20">
             </a>
-          </div>           
-        </header>
-        <menu>
-                <ul>           
-                  <li data-tabela="tabela-irpj">IRPJ</li>
-                  <li data-tabela="tabela-csll">CSLL</li>
-                  <li data-tabela="tabela-pis">PIS</li>
-                  <li data-tabela="tabela-cofins">COFINS</li>
-                  <li data-tabela="tabela-inss">INSS</li>
-              </ul>
-        </menu>
-        <main>
+          </div>          
           <table class="tabela-menu" id="tabela-irpj" style="display:none">
                 <thead>
                   <th>Legislação</th>
@@ -293,8 +303,8 @@
         </main>
        <!--<footer>
           <p>Desenvolvido com ❤️ por Tributos MAG</p>
-        </footer>-->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Biblioteca -->
+      </footer>-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="main.js"></script>
     </body>
     </html>

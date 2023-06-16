@@ -1,16 +1,39 @@
-  $("menu li").click(function() {
-    var tabela = $(this).attr("data-tabela");
-    $(".tabela-menu").hide(); // Oculta todas as tabelas
-    $("#" + tabela).show(); // Exibe a tabela correspondente ao item do menu
-    showRows(); // Atualiza a exibição das linhas
-  });  
-
-  // Registra cliques
-  $(document).on("click", ".tabela-menu tr", function() {
-    $(this).toggleClass("selecionado");
+$(document).ready(function() {
+  // Código do menu mobile
+  $(".sub-btn").click(function() {
+    $(this).next(".sub-menu").slideToggle();
   });
 
-  // Incidência: Melhores resultados
+  $(".more-btn").click(function() {
+    $(this).next(".more-menu").slideToggle();
+  });
+
+  var menu = $(".menu");
+  var menuBtn = $(".menu-btn");
+  var closeBtn = $(".close-btn");
+
+  menuBtn.click(function() {
+    menu.addClass("active");
+    $(".search-box").addClass("active"); // Adiciona a classe "active" à barra de pesquisa
+  });
+
+  closeBtn.click(function() {
+    menu.removeClass("active");
+    $(".search-box").removeClass("active"); // Remove a classe "active" da barra de pesquisa
+  });
+
+  $(window).scroll(function() {
+    var header = $("header");
+    header.toggleClass("sticky", $(this).scrollTop() > 0);
+  });
+
+  $(".menu .menu-item").click(function() {
+    var tabela = $(this).find("a").data("tabela");
+    $(".tabela-menu").hide();
+    $("#" + tabela).show();
+    showRows();
+  });
+
   function countKeywordsInCells(keywords, cells) {
     let count = 0;
     keywords.forEach(function(keyword) {
@@ -24,81 +47,75 @@
     return count;
   }
 
-  // Verifica se a linha contém pelo menos uma das palavras-chave
-function hasKeywordsInCells(keywords, cells) {
-  let hasKeyword = false;
-  keywords.forEach(function(keyword) {
-    cells.each(function() {
-      const text = $(this).text().toLowerCase();
-      if (text.includes(keyword)) {
-        hasKeyword = true;
-        return false; // Encerra o loop de células para a palavra-chave atual
-      }
-    });
-    if (hasKeyword) {
-      return false; // Encerra o loop de palavras-chaves se já foi encontrada uma correspondência
-    }
-  });
-  return hasKeyword;
-}
-function showRows() {
-  let inputValues = getValuesFromInputs();
-  let rows = document.querySelectorAll("tbody tr");
-  for (let row of rows) {
-    let shouldShowRow = true;
-    if (inputValues.length > 0) {
-      shouldShowRow = false;
-      for (let value of inputValues) {
-        if (row.textContent.toLowerCase().includes(value.toLowerCase())) {
-          shouldShowRow = true;
-          break;
+  function hasKeywordsInCells(keywords, cells) {
+    let hasKeyword = false;
+    keywords.forEach(function(keyword) {
+      cells.each(function() {
+        const text = $(this).text().toLowerCase();
+        if (text.includes(keyword)) {
+          hasKeyword = true;
+          return false;
         }
+      });
+      if (hasKeyword) {
+        return false;
       }
-    }
-    if (shouldShowRow) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
+    });
+    return hasKeyword;
   }
-}
 
-document.querySelector("#search-input").addEventListener("keydown", function(event) {
-  if (event.keyCode === 13) {
-    search();
-    event.preventDefault();
+  function showRows() {
+    let rows = $("tbody tr");
+    rows.each(function() {
+      let shouldShowRow = true;
+      let row = $(this);
+      if (shouldShowRow) {
+        row.show();
+      } else {
+        row.hide();
+      }
+    });
   }
-});
 
-$(".search-btn").click(function() {
-  search();
-});
+  function search() {
+    const keywords = $("#search-input").val().toLowerCase().split(" ");
+    const visibleTables = $(".tabela-menu:visible");
 
-function search() {
-  const keywords = $("#search-input").val().toLowerCase().split(' ');
-  const visibleTables = $(".tabela-menu:visible");
+    $(".tabela-menu tr").show();
 
-  $(".tabela-menu tr").show();
+    visibleTables.each(function() {
+      const rows = $(this).find("tbody tr");
+      rows.each(function(index) {
+        const cells = $(this).find("td");
+        const hasAllKeywords = hasKeywordsInCells(keywords, cells);
+        const hasAnyKeyword = hasKeywordsInCells(keywords, cells);
+        $(this).toggle(hasAllKeywords || hasAnyKeyword);
+        $(this).attr("data-incidencia", hasAllKeywords ? countKeywordsInCells(keywords, cells) : 0);
+      });
 
-  visibleTables.each(function() {
-    const rows = $(this).find('tbody tr');
-    rows.each(function(index) {
-      const cells = $(this).find('td');
-      const hasAllKeywords = hasKeywordsInCells(keywords, cells);
-      const hasAnyKeyword = hasKeywordsInCells(keywords, cells);
-      $(this).toggle(hasAllKeywords || hasAnyKeyword);
-      $(this).attr('data-incidencia', hasAllKeywords ? countKeywordsInCells(keywords, cells) : 0);
+      $(this)
+        .find("tbody tr:visible")
+        .sort(function(a, b) {
+          var countA = parseInt($(a).attr("data-incidencia"));
+          var countB = parseInt($(b).attr("data-incidencia"));
+          return countB - countA;
+        })
+        .appendTo($(this).find("tbody"));
     });
 
-    $(this)
-      .find('tbody tr:visible')
-      .sort(function(a, b) {
-        var countA = parseInt($(a).attr('data-incidencia'));
-        var countB = parseInt($(b).attr('data-incidencia'));
-        return countB - countA;
-      })
-      .appendTo($(this).find('tbody'));
+    $("#search-input").val("");
+  }
+
+  $("#search-input").keydown(function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      search();
+    }
   });
 
-  $("#search-input").val("");
-}
+  $(".search-btn").click(function(event) {
+    event.preventDefault();
+    search();
+  });
+});
+
