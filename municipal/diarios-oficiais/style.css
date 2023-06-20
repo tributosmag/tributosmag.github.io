@@ -22,31 +22,32 @@ body {
     background-color: #EFF7FF;
 }
 
-header{
+.gif{
     background-image: url("https://media.tenor.com/f0cKyHniahEAAAAC/background-khaoticfuture.gif");
 }
 
-
-h1{
+h1 {
     padding: 15px;
-    color: white;
     text-align: center;
+    color: white;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-}
+  }
 
-a{
-  text-decoration: none;
-}
-
+header{
+    height: 11%;
+    width: 100%;
+    display: none;
+  }
+   
 .logo > img{
     width: 60px;
     height: 60px;
-    top: 0.6%;
+    top: 1%;
     left: 2%;
     position: absolute;
 }
-
+  
 .search-box{
     top: 1.5%;
     left: 75%;
@@ -95,6 +96,10 @@ a{
 
 .search-box:hover > .search-btn{
     background-color: rgb(70, 2, 134);
+}
+
+a{
+    text-decoration: none;
 }
 
 .botoes a{
