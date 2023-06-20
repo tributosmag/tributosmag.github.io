@@ -12,7 +12,7 @@
       .logo > img{
         width: 60px;
         height: 60px;
-        top: 20%;
+        top: 12%;
         left: 2%;
         position: absolute;
       }
@@ -135,7 +135,7 @@
         transition: none;
     }
     svg{
-        width: 40%;
+        width: 80%;
     }
 
 }
