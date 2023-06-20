@@ -1,121 +1,103 @@
+const description = document.querySelector(".tooltip");
+
+		document.querySelectorAll('path').forEach((el) =>
+			el.addEventListener('mouseover', (event) => {
+				event.target.className = ("enabled");
+				description.classList.add("active");
+				description.innerHTML = event.target.id;
+			})
+
+		);
+
+		document.querySelectorAll('path').forEach((el) =>
+			el.addEventListener("mouseout", () => {
+				description.classList.remove("active");
+			})
+		);
+
+		document.onmousemove = function (e) {
+			description.style.left = e.pageX + "px";
+			description.style.top = (e.pageY - 70) + "px";
+		}
+
 $(document).ready(function() {
-  // Código do menu mobile
-  $(".sub-btn").click(function() {
-    $(this).next(".sub-menu").slideToggle();
-  });
-
-  $(".more-btn").click(function() {
-    $(this).next(".more-menu").slideToggle();
-  });
-
-  var menu = $(".menu");
-  var menuBtn = $(".menu-btn");
-  var closeBtn = $(".close-btn");
-
-  menuBtn.click(function() {
-    menu.addClass("active");
-    $(".search-box").addClass("active"); // Adiciona a classe "active" à barra de pesquisa
-  });
-
-  closeBtn.click(function() {
-    menu.removeClass("active");
-    $(".search-box").removeClass("active"); // Remove a classe "active" da barra de pesquisa
-  });
-
-  $(window).scroll(function() {
-    var header = $("header");
-    header.toggleClass("sticky", $(this).scrollTop() > 0);
-  });
-
-  $(".menu .menu-item").click(function() {
-    var tabela = $(this).find("a").data("tabela");
-    $(".tabela-menu").hide();
-    $("#" + tabela).show();
-    showRows();
-  });
-
-  function countKeywordsInCells(keywords, cells) {
-    let count = 0;
-    keywords.forEach(function(keyword) {
-      cells.each(function() {
-        const text = $(this).text().toLowerCase();
-        if (text.includes(keyword)) {
-          count++;
-        }
-      });
-    });
-    return count;
-  }
-
-  function hasKeywordsInCells(keywords, cells) {
-    let hasKeyword = false;
-    keywords.forEach(function(keyword) {
-      cells.each(function() {
-        const text = $(this).text().toLowerCase();
-        if (text.includes(keyword)) {
-          hasKeyword = true;
-          return false;
-        }
-      });
-      if (hasKeyword) {
-        return false;
-      }
-    });
-    return hasKeyword;
-  }
-
-  function showRows() {
-    let rows = $("tbody tr");
-    rows.each(function() {
-      let shouldShowRow = true;
-      let row = $(this);
-      if (shouldShowRow) {
-        row.show();
-      } else {
-        row.hide();
-      }
-    });
-  }
-
-  function search() {
-    const keywords = $("#search-input").val().toLowerCase().split(" ");
-    const visibleTables = $(".tabela-menu:visible");
-
-    $(".tabela-menu tr").show();
-
-    visibleTables.each(function() {
-      const rows = $(this).find("tbody tr");
-      rows.each(function(index) {
-        const cells = $(this).find("td");
-        const hasAllKeywords = hasKeywordsInCells(keywords, cells);
-        const hasAnyKeyword = hasKeywordsInCells(keywords, cells);
-        $(this).toggle(hasAllKeywords || hasAnyKeyword);
-        $(this).attr("data-incidencia", hasAllKeywords ? countKeywordsInCells(keywords, cells) : 0);
-      });
-
-      $(this)
-        .find("tbody tr:visible")
-        .sort(function(a, b) {
-          var countA = parseInt($(a).attr("data-incidencia"));
-          var countB = parseInt($(b).attr("data-incidencia"));
-          return countB - countA;
-        })
-        .appendTo($(this).find("tbody"));
-    });
-
-    $("#search-input").val("");
-  }
-
-  $("#search-input").keydown(function(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      search();
-    }
-  });
-
-  $(".search-btn").click(function(event) {
+  $("a.botao-estado").click(function(event) {
     event.preventDefault();
-    search();
+    var tabela = $(this).data("tabela");
+    $(".tabela-estados").hide();
+    $("#" + tabela).show();
+  });
+
+  $("path").click(function(event) {
+    event.preventDefault();
+    var tabela = $(this).data("tabela");
+    $(".tabela-estados").hide();
+    $("#" + tabela).show();
+  });
+
+
+  // Registra cliques
+  $(document).on("click", ".tabela-estados tr", function() {
+    $(this).toggleClass("selecionado");
   });
 });
 
+$(document).ready(function() {
+  $(".botao-estado").click(function(event) {
+    event.preventDefault();
+    var tabelaId = $(this).attr("data-tabela");
+
+    // Oculta o mapa e as tabelas
+    $("svg").hide();
+    $(".tabela-estados").hide();
+
+    // Move a tabela correspondente para o novo local
+    $("#" + tabelaId).appendTo("#container").show();
+  });
+
+  $("path").click(function(event) {
+    event.preventDefault();
+    var tabelaId = $(this).attr("data-tabela");
+
+    // Oculta o mapa e as tabelas
+    $("svg").hide();
+    $(".tabela-estados").hide();
+
+    // Move a tabela correspondente para o novo local
+    $("#" + tabelaId).appendTo("#container").show();
+  });
+});
+
+$(document).ready(function() {
+  $("#botao-mapa").click(function(event) {
+    event.preventDefault();
+
+    // Oculta as tabelas e mostra o mapa
+    $(".tabela-estados").hide();
+    $("#mapa").show();
+  });
+
+  $(".botao-estado").click(function(event) {
+    event.preventDefault();
+    var tabelaId = $(this).attr("data-tabela");
+
+    // Oculta o mapa e as tabelas
+    $("#mapa").hide();
+    $(".tabela-estados").hide();
+
+    // Move a tabela correspondente para o novo local
+    $("#" + tabelaId).appendTo("#container").show();
+  });
+
+  $("path").click(function(event) {
+    event.preventDefault();
+    var tabelaId = $(this).attr("data-tabela");
+
+    // Oculta o mapa e as tabelas
+    $("#mapa").hide();
+    $(".tabela-estados").hide();
+
+    // Move a tabela correspondente para o novo local
+    $("#" + tabelaId).appendTo("#container").show();
+  });
+});
