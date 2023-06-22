@@ -2,132 +2,34 @@
     header{
         width: 100%;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
         background: #23252B;
-        box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
-        transition: 0.6s;
       }
-      
       .logo > img{
         width: 60px;
         height: 60px;
-        top: 15%;
+        top: 12%;
         left: 2%;
         position: absolute;
       }
-      
-      header .navigation{
-        position: relative;
-        line-height: 75px;
-        transition: 0.6s;
-        transition-property: line-height;
-      }
-      
-      header.sticky .navigation{
-        line-height: 60px;
-      }
-      
-      header .navigation .menu{
-        position: relative;
-        display: flex;
-        justify-content: center;
-        list-style: none;
-        user-select: none;
-      }
-      
-      .menu-item{
-        position: relative;
-      }
-    
-      .menu-item .sub-menu{
-        opacity: 1;
-        position: relative;
-        top: 0;
-        transform: translateX(10px);
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 5px;
-        overflow: hidden;
+      .botoes li a:not(#botao-mapa) {
         display: none;
       }
-    
-      header.sticky .menu-item .sub-menu{
-        top: 0;
-      }
-    
-      .menu-item:hover .sub-menu{
-        transform: translateX(10px);
-      }
-    
-      .menu-item .sub-menu .sub-item{
-        box-shadow: none;
-      }
-    
-      .menu-item .sub-menu .sub-item:hover{
-        background: none;
-      }
-    
-      .menu-item .sub-menu .sub-item a:hover{
-        color: #4080EF;
-        transition: 0.3s;
-      }
-    
-      .more .more-menu{
-        opacity: 1;
-        position: relative;
-        left: 0;
-        transform: translateY(0);
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 5px;
-        display: none;
-      }
-    
-      .more .more-menu .more-item{
-        box-shadow: none;
-      }
-    
-      .more .more-menu .more-item:hover{
-        background: none;
-      }
-    
-      .more .more-menu .more-item a{
-        margin-left: 20px;
-      }
-    
-      .menu-btn{
-        width: 40px;
-        height: 40px;
-        display: block;
-      }
-    
-      header{
-        padding: 15px 21px;
-      }
-    
-      header.sticky{
-        padding: 10px 20px;
-      }
-
-    .botoes li a:not(#botao-mapa) {
-        display: none;
-    }
-    #botao-mapa{
+      #botao-mapa{
         top: 86%;
-        left: 57%;
+        left: 65%;
         position: absolute;
         width: 120px;
         height: 45px;
-    }
-    #container{
-        top: 22%;
+      }
+      #mapa{
+        top: 60%;
+      }
+      #container{
+        top: 20%;
         left: 0%;
         position: absolute;
-    }
-    path{
-        transition: none;
-    }
-    svg{
-        width: 80%;
-    }
-
+      }
+      svg{
+        width: 100%;
+      }
 }
