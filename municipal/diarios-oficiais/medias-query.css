@@ -3,33 +3,36 @@
         width: 100%;
         display: flex;
         background: #23252B;
-      }
+      }   
       .logo > img{
         width: 60px;
         height: 60px;
-        top: 16%;
+        top: 20%;
         left: 2%;
         position: absolute;
       }
-      .botoes li a:not(#botao-mapa) {
+    .botoes li a:not(#botao-mapa) {
         display: none;
-      }
-      #botao-mapa{
+    }
+    #botao-mapa{
         top: 86%;
         left: 65%;
         position: absolute;
         width: 120px;
         height: 45px;
-      }
-      #mapa{
-        top: 60%;
-      }
-      #container{
-        top: 20%;
+    }
+    #container{
+        top: 31%;
         left: 0%;
         position: absolute;
+    }
+    #mapa{
+        top: 66%;
+        left: 50%;
+        position: absolute;
       }
-      svg{
-        width: 100%;
-      }
+    svg{
+        width: 98%;
+    }
+
 }
