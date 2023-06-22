@@ -22,17 +22,17 @@
         height: 45px;
     }
     #container{
-        top: 31%;
+        top: 26%;
         left: 0%;
         position: absolute;
     }
     #mapa{
-        top: 66%;
+        top: 50%;
         left: 50%;
         position: absolute;
       }
     svg{
-        width: 98%;
+        width: 100%;
     }
 
 }
