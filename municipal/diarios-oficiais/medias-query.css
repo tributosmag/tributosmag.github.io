@@ -24,6 +24,7 @@
     #container{
         top: 22%;
         left: 0%;
+        position: absolute;
     }
     svg{
         width: 100%;
