@@ -13,7 +13,7 @@
         width: 60px;
         height: 60px;
         top: 14%;
-        left: 3%;
+        left: 4%;
         position: absolute;
       }
     .botoes li a:not(#botao-mapa) {
@@ -27,7 +27,7 @@
         height: 45px;
     }
     #container{
-        top: 22%;
+        top: 24%;
         left: 0%;
         position: absolute;
     }
