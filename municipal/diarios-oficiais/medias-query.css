@@ -7,8 +7,8 @@
       }
       .logo > img{
         width: 60px;
-        height: 60px; 
-        top: 16%;
+        height: 60px;
+        top: 15%;
         left: 2%;
         position: absolute;
       }
@@ -23,7 +23,7 @@
         height: 45px;
     }
     #container{
-        top: 28%;
+        top: 26%;
         left: 0%;
         position: absolute;
     }
