@@ -5,7 +5,11 @@
         display: flex;
         background: #23252B;
       }
-      .logo > img{
+    .logo {
+        position: relative;
+    }
+
+    .logo > img{
         width: 60px;
         height: 60px;
         top: 14%;
