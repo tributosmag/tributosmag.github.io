@@ -23,11 +23,11 @@ h1 {
   font-weight: 400;
 }
 
-.gif{
+header{
     background-image: url("https://media.tenor.com/f0cKyHniahEAAAAC/background-khaoticfuture.gif");
 }
 
-header{
+nav{
   height: 11%;
   width: 100%;
   display: none;

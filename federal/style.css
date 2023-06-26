@@ -23,11 +23,11 @@ h1 {
   font-weight: 400;
 }
 
-header{
+.gif{
     background-image: url("https://media.tenor.com/f0cKyHniahEAAAAC/background-khaoticfuture.gif");
 }
 
-nav{
+header{
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -45,18 +45,18 @@ nav{
   position: absolute;
 }
 
-nav .navigation{
+header .navigation{
   position: relative;
   line-height: 75px;
   transition: 0.6s;
   transition-property: line-height;
 }
 
-nav.sticky .navigation{
+header.sticky .navigation{
   line-height: 60px;
 }
 
-nav .navigation .menu{
+header .navigation .menu{
   position: relative;
   display: flex;
   justify-content: center;

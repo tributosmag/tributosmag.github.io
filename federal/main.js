@@ -23,8 +23,8 @@ $(document).ready(function() {
   });
 
   $(window).scroll(function() {
-    var header = $("header");
-    header.toggleClass("sticky", $(this).scrollTop() > 0);
+    var nav = $("nav");
+    nav.toggleClass("sticky", $(this).scrollTop() > 0);
   });
 
   $(".menu .menu-item").click(function() {
